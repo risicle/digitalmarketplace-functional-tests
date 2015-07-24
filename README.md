@@ -37,12 +37,17 @@ To include or exclude tags see [the cucumber documentation](https://github.com/c
 
 ## Controlling the test environment
 
-The test environment can be controlled with environment variables
+The test environment can be controlled with environment variables. Note: you should not add a trailing slash (/) to
+the domain URLs.
 
-| Environment Variable           | Description                | Default               |
-| ------------------------------ | -------------------------- | --------------------- |
-| `DM_API_DOMAIN`                | API domain                 | http://localhost:5000 |
-| `DM_API_ACCESS_TOKEN`          | API Access Token           | myToken               |
-| `DM_SEARCH_API_DOMAIN`         | Search API Domain          | http://localhost:5001 |
-| `DM_SEARCH_API_ACCESS_TOKEN`   | Search API Access Token    | myToken               |
-| `DM_FRONTEND_DOMAIN`           | Frontend domain            |                       |
+| Environment Variable             | Description                | Default                 |
+| -------------------------------- | -------------------------- | ----------------------- |
+| ``DM_API_DOMAIN``                | API domain                 | http://localhost:5000   |
+| ``DM_API_ACCESS_TOKEN``          | API Access Token           | myToken                 |
+| ``DM_SEARCH_API_DOMAIN``         | Search API Domain          | http://localhost:5001   |
+| ``DM_SEARCH_API_ACCESS_TOKEN``   | Search API Access Token    | myToken                 |
+| ``DM_FRONTEND_DOMAIN``           | Frontend domain            |                         |
+| ``DM_ADMINISTRATORNAME``         | Administrator email        | admin@example.com       |
+| ``DM_ADMINISTRATORPASSWORD``     | Administrator password     | adminPassword           |
+| ``DM_SUPPLIEREMAIL``             | Supplier email             | supplier@example.com    |
+| ``DM_SUPPLIERPASSWORD``          | Supplier password          | supplierPassword        |
