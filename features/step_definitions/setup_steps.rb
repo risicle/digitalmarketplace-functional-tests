@@ -60,6 +60,15 @@ def create_live_service (supplier_id, service_id, lot)
 end
 
 Given /^The test suppliers have live services$/ do
+    path = "/suppliers/11111/frameworks/g-cloud-6/declaration"
+    response = call_api(:put, path, payload: {
+      "declaration": {
+        "status": "complete",
+      },
+      "updated_by": "Test User"
+    })
+    response.code.should be_between(200, 201), response.body
+
     create_live_service(11111,"1123456789012346","iaas")
     create_live_service(11111,"1123456789012347","paas")
     create_live_service(11111,"1123456789012348","saas")
