@@ -5,6 +5,19 @@ let
     pkgs = import <nixpkgs> {};
     localOverridesPath = ./local.nix;
   } // argsOuter;
+  bundler = args.pkgs.buildRubyGem rec {
+    ruby = args.pkgs.ruby;
+    name = "${gemName}-${version}";
+    gemName = "bundler";
+    version = "2.0.1";
+    source.sha256 = "1sjnfsyw80g56kj96gdfgxfb793h6d5fyyir4zf2x71wk4wq1qy7";
+    dontPatchShebangs = true;
+
+    postFixup = ''
+        sed -i -e "s/activate_bin_path/bin_path/g" $out/bin/bundle
+    '';
+  };
+  bundix = args.pkgs.bundix.override { inherit bundler; };
 in (with args; {
   digitalMarketplaceFunctionalTestsEnv = (
     (pkgs.bundlerEnv {
@@ -18,7 +31,7 @@ in (with args; {
       name = "digitalmarketplace-functional-tests-env";
       shortName = "dm-func-tst";
       buildInputs = [
-        pkgs.bundix
+        bundix
         pkgs.libxml2
         pkgs.phantomjs2
         ((import ./aws-auth.nix) (with pkgs; { inherit stdenv fetchFromGitHub makeWrapper jq awscli openssl; }))
